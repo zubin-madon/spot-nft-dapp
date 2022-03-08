@@ -17,6 +17,9 @@ import image400 from './GoatdTraits/400.png';
 import image401 from './GoatdTraits/401.png';
 import image600 from './GoatdTraits/600.png';
 import image601 from './GoatdTraits/601.png';
+import image602 from './GoatdTraits/602.png';
+import image603 from './GoatdTraits/603.png';
+import image604 from './GoatdTraits/604.png';
 
 const traits = [
     {
@@ -152,6 +155,28 @@ const traits = [
         traitType: 'Headwear',
         rarity: 'Rare'
       },
+      {
+        id: 602,
+        image: image602,
+        traitName: 'Super Goat',
+        traitType: 'Headwear',
+        rarity: 'Rare'
+      },
+      {
+        id: 603,
+        image: image603,
+        traitName: 'Goatd Hat',
+        traitType: 'Headwear',
+        rarity: 'Uncommon'
+      },
+      {
+        id: 604,
+        image: image604,
+        traitName: 'Sweatband',
+        traitType: 'Headwear',
+        rarity: 'Uncommon'
+      },
+
 
 ]
 export default traits;
