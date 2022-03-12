@@ -19,7 +19,7 @@ function App() {
     const connectorId = window.localStorage.getItem("connectorId");
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading){
         enableWeb3({ provider: connectorId });}
-        (chainId !== '0xa86a')&&switchNetwork("0xa86a")
+        //(chainId !== '0xa86a')&&switchNetwork("0xa86a")
   }, [isAuthenticated, isWeb3Enabled, chain]);
 
     if (!isAuthenticated || account===null) {

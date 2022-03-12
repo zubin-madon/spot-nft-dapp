@@ -11,7 +11,11 @@ import Authenticate from '../Authenticate';
 export const Board = () => {
     const {account, isAuthenticated} = useMoralis();
     const userAddress = account
-    const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87"
+    const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
+    const spotNFTContract = '';
+    const spotTraitsContractFuji = '0xC3D61533944ED9527eb765058c77B127ADa0bEf6';
+    const spotNFTContractFuji = '0xA7013d6aF1638C451814b6aF882851385a832884';
+
     const [filter, setFilter] = useState('');
 
     {/* For Image retrieval */}
@@ -45,7 +49,7 @@ export const Board = () => {
     console.log("component rendered")
     
     function getTraits() {
-        const options = { chain: "avalanche", address: userAddress, token_address: spotTraitsContract };
+        const options = { chain: "avalanche", address: userAddress, token_address: spotTraitsContractFuji };
         Moralis.Web3API.account.getNFTsForContract(options).then((data)=>{
             const result = data.result
             setWalletTraits(result.map(nft=>nft.token_id))
@@ -98,25 +102,11 @@ export const Board = () => {
 
     // Putting stuff on Canvas
     const canvas = useRef(null)
+    const hiddenCanvas = useRef(null)
     const [height, setHeight] = useState(null);
     const [width, setWidth] = useState(null);
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth)
     const [windowHeight, setWindowHeight] = React.useState(window.innerHeight)
-    
-    // React.useEffect(() => {
-    //     window.addEventListener("resize", function() {
-    //         setWindowWidth(window.innerWidth)
-    //         setWindowHeight(window.innerHeight)
-
-    //     })
-    //     return()=> {
-    //         window.removeEventListener("resize", function() {
-    //             setWindowWidth(window.innerWidth)
-    //             setWindowHeight(window.innerHeight)
-    
-    //         })
-    //     }}
-    // )
   
   const div = useCallback(node => {
     
@@ -132,10 +122,23 @@ export const Board = () => {
         img.src = layer
         img.onload= () => {
             const ctx = canvas.current.getContext("2d")
+            //const ctxHidden = hiddenCanvas.current.getContext("2d")
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0,0, width, height)
-            
+            ctx.drawImage(img, 0,0, width, height)  
+            //ctxHidden.clearRect(0, 0, canvas.width, canvas.height);
+            //ctxHidden.drawImage(img, 0,0, 900, 900)     
     }
+    const imgHidden = new Image();
+        imgHidden.src = layer
+        imgHidden.onload= () => {
+            //const ctx = canvas.current.getContext("2d")
+            const ctxHidden = hiddenCanvas.current.getContext("2d")
+            //ctx.clearRect(0, 0, canvas.width, canvas.height);
+            //ctx.drawImage(img, 0,0, width, height)  
+            ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+            ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
+    }
+
 
         }
     useEffect(()=> {
@@ -151,10 +154,10 @@ export const Board = () => {
     , [canvasImage, canvas, windowWidth, windowHeight])
         const [savedImage, setSavedImage] = useState('') //Saving image for sending to IPFS. This part isn't active yet!
     function saveImage() {
-        // let imageToSave = new Image();
-        // imageToSave.src = canvas.current.toDataURL('image/png', 1.0);
-        // setSavedImage(imageToSave.src)
-        alert("Patience Lurker! Minting isn't active yet!")
+        let imageToSave = new Image();
+        imageToSave.src = hiddenCanvas.current.toDataURL('image/png', 1.0);
+        setSavedImage(imageToSave.src)
+        //alert("Patience Lurker! Minting isn't active yet!")
     }
     
     if (!isAuthenticated) {
@@ -175,6 +178,11 @@ export const Board = () => {
     height = {height}
     className='mt-5 border-1 border-4 border-slate-500 text-center self-center justify-self-center p-5'
 />
+<canvas
+ref={hiddenCanvas}
+width = '900px'
+height = '900px'
+className='invisible' />
 <h1 className='font-mono text-yellow-400 text-2xl pt-5'>Transmorphisizer</h1>
 </div>
 
@@ -244,7 +252,7 @@ Traits not in your wallet.
         onChange={searchText.bind(this)}
       /></div>
     </div>
-    <img src={savedImage}></img>
+ 
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {dataSearch.map(createCard)}
     </div>
