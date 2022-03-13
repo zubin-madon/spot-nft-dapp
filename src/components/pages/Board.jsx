@@ -179,7 +179,7 @@ export const Board = () => {
     height = {height}
     className='mt-1 border-1 border-4 border-slate-500 text-center content-center p-5'
 />
-<div className="text-center"><h1 className='font-mono text-yellow-400 text-2xl pt-1'>Transmorphisizer</h1></div>
+<div className="text-center md: pl-10"><h1 className='font-mono text-yellow-400 text-2xl pt-1'>Transmorphisizer</h1></div>
 <canvas
 ref={hiddenCanvas}
 width = '900px'
