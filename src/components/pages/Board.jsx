@@ -15,8 +15,8 @@ export const Board = () => {
     const spotNFTContract = '';
     const spotTraitsContractFuji = '0xC3D61533944ED9527eb765058c77B127ADa0bEf6';
     const spotNFTContractFuji = '0xA7013d6aF1638C451814b6aF882851385a832884';
-
     const [filter, setFilter] = useState('');
+
 
     {/* For Image retrieval */}
     const [canvasImage, setCanvasImage] = useState({
@@ -112,8 +112,8 @@ export const Board = () => {
     
     if (node !== null) {
        
-      setHeight(node.getBoundingClientRect().height*0.8); //set height and width of canvas relative to parent div.
-      setWidth(node.getBoundingClientRect().width*0.8);
+      setHeight(node.getBoundingClientRect().height); //set height and width of canvas relative to parent div.
+      setWidth(node.getBoundingClientRect().width);
     }
   }, [windowWidth, windowHeight]);
 
@@ -170,25 +170,26 @@ export const Board = () => {
 <div className='container flex-auto mx-auto w-full'>
 
 {/* Canvas Row*/}
-<div class="grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-col-1 sm:grid-cols-1 gap-4 mt-6 ml-6 p-3">
-<div className='content-center p-5 sm:col-span-1 mb-10 sm:w-1/2 sm:h-1/2' ref={div} style={{height: "30rem", width: "30rem"}}>
+<div className="lg:sticky top-20 grid 2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-4 mt-1 ml-6 sm:p-5 bg-slate-900 lg:pb-10">
+{/* canvas div */}
+<div className="p-1 mb-10 sm:mb-10" ref={div} style={{height: "20rem", width: "20rem"}}>
 <canvas
     ref={canvas}
     width = {width}
     height = {height}
-    className='mt-5 border-1 border-4 border-slate-500 text-center self-center justify-self-center p-5'
+    className='mt-1 border-1 border-4 border-slate-500 text-center content-center p-5'
 />
+<div className="text-center"><h1 className='font-mono text-yellow-400 text-2xl pt-1'>Transmorphisizer</h1></div>
 <canvas
 ref={hiddenCanvas}
 width = '900px'
 height = '900px'
 className='invisible' />
-<h1 className='font-mono text-yellow-400 text-2xl pt-5'>Transmorphisizer</h1>
 </div>
-
-{/* Stats */}
-<div className='self-center border-dashed border-4 border-slate-500 p-3 m-1 text-left col-span-1 w-96'>
-
+{/* canvas div ends */}
+{/* Stats div*/}
+<div className='border-dashed border-4 border-slate-500 p-3 m-1 text-left col-span-1 w-96 md:mt-10 lg:mt-1 mt-10 sm:mt-10 text-sm'>
+{/* Individual Stats */}
 <div className='font-mono text-white list-none flex pb-3'>
 <div className= {`text-${walletTraits.includes(`${chosenTrait.BackgroundID}`)?"spot-yellow":"[red]"} font-bold pr-3`}>Background: </div>
 {chosenTrait.Background} (ID: {chosenTrait.BackgroundID})
@@ -218,42 +219,38 @@ className='invisible' />
 <div className={`text-${walletTraits.includes(`${chosenTrait.HeadwearID}`)?"spot-yellow":"[red]"} font-bold pr-3`}>Headwear: </div>
 {chosenTrait.Headwear} (ID: {chosenTrait.HeadwearID})
 </div>
-{/* End of Stats */}
-
-<div className="pt-4 pb-4">
+{/* End of Indiv Stats */}
+{/* Buttons */}
+<div className="pt-1 pb-1">
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
-     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-xl" onClick={saveImage}>Mint</button>
+     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={saveImage}>Mint</button>
      <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
-     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-xl" onClick={()=>{
+     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{
         setCheckMyTraits(!checkMyTraits)
      }}>My Owned Traits</button>
 </div>
-
-
+{/* End of Buttons */}
+{/* Two bottom text lines */}
 <div className='font-mono text-white list-none flex pb-0 pt-3 text-sm'>
 <div className='text-spot-yellow font-bold pr-3 text-xl'>* </div>
 Traits in your wallet:  {apiLoaded,checkMyTraits&&walletTraits.length+' nos.'} {apiLoaded,checkMyTraits&&'IDs: '+walletTraits.map(trait=>' '+trait)}
 </div>
-
 <div className='font-mono text-white list-none flex pb-3 text-sm'>
 <div className='text-[red] pr-3 text-xl'>* </div>
 Traits not in your wallet.
-</div>
-
-</div>
-
-</div>
-
-
-    <div className="grid grid-rows-1 grid-cols-12 gap-4 pt-10 pl-10">
+</div> {/* End of btm text lines */}
+</div>{/* Stats div Ends*/}
+{/* SearchBox */}
+<div className="grid grid-rows-1 grid-cols-12 gap-4 pt-10 pl-10 self-end">
     <div className='col-span-1'><input type="text" 
         className="border-2 border-slate-600 bg-slate-400 text-left font-mono placeholder-slate-600 pl-2" placeholder="search trait/ID..."
         value={filter}
         onChange={searchText.bind(this)}
       /></div>
-    </div>
- 
-    <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
+</div>{/* SearchBox Ends */}
+</div>{/* Canvas Row Div Ends*/}
+
+    <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {dataSearch.map(createCard)}
     </div>
     
