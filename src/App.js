@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import { useMoralis, useMoralisWeb3Api } from "react-moralis";
 import { Nav } from "./components/Nav";
@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Roadmap from "./components/pages/roadmap";
 import Team from "./components/pages/team";
 import Footer from "./components/Footer";
+
 function App() {
   
   const  { isWeb3Enabled, isWeb3EnableLoading, enableWeb3, isAuthenticated, account } = useMoralis();
@@ -19,7 +20,7 @@ function App() {
     const connectorId = window.localStorage.getItem("connectorId");
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading){
         enableWeb3({ provider: connectorId });}
-        //(chainId !== '0xa86a')&&switchNetwork("0xa86a")
+        (chainId !== '0xa869')&&switchNetwork("0xa869")
   }, [isAuthenticated, isWeb3Enabled, chain]);
 
     if (!isAuthenticated || account===null) {
@@ -33,9 +34,7 @@ function App() {
       <div className='App bg-slate-900'>
       <Router>
       <div className="bg-slate-900 w-full h-100">
-      
       <Nav />
-      
       <div className="flex justify-center items-center gap-2">
       <Routes>
           <Route path="/" exact element={<Board />} />
@@ -54,7 +53,6 @@ function App() {
         
       </Router> 
       </div>
-      
       
     );
   }

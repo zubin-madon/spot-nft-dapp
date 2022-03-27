@@ -9,8 +9,9 @@ export const Nav = () => {
       {name:"Home", link:"/"},
       {name:"Roadmap", link:"/roadmap"},
       {name:"Team", link:"/team"},
+      {name:"Spot Mint", link:"https://thespotnft.com/"},
       {name:"Twitter", link:"https://twitter.com/TheSpotnft"},
-      {name:"Discord", link:"https://discord.com/invite/4wvC6xTFyB"},
+      {name:"Discord", link:"https://discord.com/invite/4wvC6xTFyB"}
   ];
   const [open, setOpen]=useState(false);
 
@@ -27,7 +28,7 @@ export const Nav = () => {
             Links.map((link)=>(
                 
                 <li key={link.name} className='md:ml-8 text-xl hover:text-gray-400 duration-300 md:my-0 my-7 pl-2'>
-                    <a target={(link.name==="Twitter"||link.name==="Discord")&&"_blank"} href={link.link}>{link.name}</a>
+                    <a target={(link.name==="Twitter"||link.name==="Discord"||link.name==="Spot Mint")&&"_blank"} href={link.link}>{link.name}</a>
                 </li>
             ))
         }
