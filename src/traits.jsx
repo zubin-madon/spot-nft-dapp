@@ -1,7 +1,7 @@
 const traits = [
   {
       id: 1,
-      image: 'https://raw.githubusercontent.com/zubin-madon/traits/dbf0cef72ff137687be225e8cf2e4d07006dcf1f/1.png',
+      image: 'https://i.imgur.com/sNlXVfh.jpeg',
       traitName: 'Hell Fire',
       traitType: 'Background',
       rarity: 'Legendary'

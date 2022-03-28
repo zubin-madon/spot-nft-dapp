@@ -114,20 +114,21 @@ export const Board = () => {
 
     function drawImage(layer) {
         const img = new Image();
-        img.src = layer
+        img.setAttribute('crossOrigin', 'anonymous');
         img.onload= () => {
             const ctx = canvas.current.getContext("2d")
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0,0, width, height)  
     }
-    img.src = layer
-        const imgHidden = new Image();
-        imgHidden.src = layer
-        imgHidden.onload= () => {
-            const ctxHidden = hiddenCanvas.current.getContext("2d")
-            ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-            ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
-    }
+    //img.crossOrigin = "anonymous";
+        img.src = layer
+    // const imgHidden = new Image();
+    //     imgHidden.src = layer
+    //     imgHidden.onload= () => {
+    //         const ctxHidden = hiddenCanvas.current.getContext("2d")
+    //         ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+    //         ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
+    // }
 
 
         }
@@ -145,15 +146,12 @@ export const Board = () => {
         const [savedImage, setSavedImage] = useState('') //Saving image for sending to IPFS. This part isn't active yet!
     function saveImage() {
         let imageToSave = new Image();
-        imageToSave.crossOrigin="anonymous";
-        imageToSave.src = canvas.current.toDataURL('image/png', 1.0)
+        imageToSave.setAttribute('crossOrigin', 'anonymous');
         imageToSave.addEventListener('load', () => {
         console.log(imageToSave.src)
         setSavedImage(imageToSave.src)})
-        
-        return imageToSave.src
-        
-        
+        imageToSave.src = canvas.current.toDataURL('image/png', 1.0)
+        //fetch('https://traits.s3.filebase.com/2.png').then(response=>response.json())   
     }
 
 //     3. You need to verify that the current combination of traits has not been used before. 
@@ -206,6 +204,7 @@ useEffect(function() {
 {/* Canvas Row*/}
 <div className="lg:sticky top-20 grid 2xl:grid-cols-3 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-4 mt-1 ml-6 sm:p-5 bg-slate-900 lg:pb-3">
 {/* canvas div */}
+
 <div className="p-1 mb-10 sm:mb-10" ref={div} style={{height: "20rem", width: "20rem"}}>
 <canvas
     ref={canvas}
@@ -296,7 +295,7 @@ Traits not in your wallet.
       /></div>
 </div>{/* SearchBox Ends */}
 </div>{/* Canvas Row Div Ends*/}
-<img src={saveImage} alt="test result" crossOrigin=""></img>
+<img crossOrigin="anonymous" src={saveImage} alt="test result"></img>
 
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {dataSearch.map(createCard)}
