@@ -67,10 +67,12 @@ export const Board = () => {
     useEffect(()=>{
         getTraits();
     }, [checkMyTraits, account])
+
     function updateCanvasTraits(trait) {
         setCanvasImage(prevImage=>({...prevImage, [trait.traitType]:trait.image}))
         setChosenTrait(prevTrait=>({...prevTrait, [trait.traitType]:trait.traitName, [trait.traitType+'ID']:trait.id}))
     }
+
     function createCard(trait) { //Building the card here from Card.jsx passing props and simultaneously fetching traits on click.
         return (
             
@@ -114,21 +116,20 @@ export const Board = () => {
 
     function drawImage(layer) {
         const img = new Image();
-        img.setAttribute('crossOrigin', 'anonymous');
+        //img.setAttribute('crossOrigin', '*');
         img.onload= () => {
             const ctx = canvas.current.getContext("2d")
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0,0, width, height)  
     }
-    //img.crossOrigin = "anonymous";
-        img.src = layer
-    // const imgHidden = new Image();
-    //     imgHidden.src = layer
-    //     imgHidden.onload= () => {
-    //         const ctxHidden = hiddenCanvas.current.getContext("2d")
-    //         ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-    //         ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
-    // }
+    img.src = layer
+    const imgHidden = new Image();
+        imgHidden.src = layer
+        imgHidden.onload= () => {
+            const ctxHidden = hiddenCanvas.current.getContext("2d")
+            ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+            ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
+    }
 
 
         }
@@ -143,16 +144,15 @@ export const Board = () => {
         
         }
     , [canvasImage, canvas, windowWidth, windowHeight])
-        const [savedImage, setSavedImage] = useState('') //Saving image for sending to IPFS. This part isn't active yet!
-    function saveImage() {
+        const [savedImage, setSavedImage] = useState('empty image') //Saving image for sending to IPFS. This part isn't active yet!
+        
+        function saveImage() {
         let imageToSave = new Image();
-        imageToSave.setAttribute('crossOrigin', 'anonymous');
-        imageToSave.addEventListener('load', () => {
-        console.log(imageToSave.src)
-        setSavedImage(imageToSave.src)})
         imageToSave.src = canvas.current.toDataURL('image/png', 1.0)
-        //fetch('https://traits.s3.filebase.com/2.png').then(response=>response.json())   
-    }
+        return imageToSave.src
+        }
+       
+
 
 //     3. You need to verify that the current combination of traits has not been used before. 
 //  There is a function checkDNA in the pfp contract where you pass in a string of the concatenated trait ids. Returns 0 if combo available. Returns 1 if taken.
@@ -260,7 +260,9 @@ className='hidden' />
 <Mint 
     chosenTrait = {chosenTrait}
     walletTraits = {walletTraits}
-    saveImage = {saveImage}   
+    saveImage = {saveImage}
+    userAddress = {userAddress}
+    canvas = {chosenTrait}   
 />
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{
@@ -269,7 +271,7 @@ className='hidden' />
 
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={saveImage}>Save Image</button>
-{/* <SetApproval />    */}
+<SetApproval />   
 </div>
 {/* End of Buttons */}
 {/* Two bottom text lines */}

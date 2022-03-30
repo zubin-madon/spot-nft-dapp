@@ -3,6 +3,7 @@ import { useMoralis, useWeb3ExecuteFunction, useChain } from "react-moralis";
 import spotNFTAbiFuji from '../contracts/spotNFTAbiFuji.json';
 import spotTraitsAbiFuji from '../contracts/spotTraitsAbiFuji.json';
 
+
 function SetApproval() {
   //isApprovedForAll(account, operator) - function imported from OpenZeppelin IERC1155
   //setApprovalForAll(operator, approved) - function imported from OpenZeppelin IERC1155
