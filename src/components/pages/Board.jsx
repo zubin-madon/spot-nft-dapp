@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Card from '../Card';
 import traits from '../../traits';
-import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import { useMoralis, useWeb3ExecuteFunction} from "react-moralis";
 import Moralis from 'moralis';
 import Authenticate from '../Authenticate';
 import spotNFTAbiFuji from '../../contracts/spotNFTAbiFuji.json';
@@ -117,12 +117,13 @@ export const Board = () => {
     function drawImage(layer) {
         const img = new Image();
         //img.setAttribute('crossOrigin', '*');
+        img.src = layer
         img.onload= () => {
             const ctx = canvas.current.getContext("2d")
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0,0, width, height)  
     }
-    img.src = layer
+    
     const imgHidden = new Image();
         imgHidden.src = layer
         imgHidden.onload= () => {
@@ -130,7 +131,6 @@ export const Board = () => {
             ctxHidden.clearRect(0, 0, hiddenCanvas.width, hiddenCanvas.height);
             ctxHidden.drawImage(imgHidden, 0,0, 900, 900)     
     }
-
 
         }
     useEffect(()=> {
@@ -147,12 +147,19 @@ export const Board = () => {
         const [savedImage, setSavedImage] = useState('empty image') //Saving image for sending to IPFS. This part isn't active yet!
         
         function saveImage() {
-        let imageToSave = new Image();
-        imageToSave.src = canvas.current.toDataURL('image/png', 1.0)
-        return imageToSave.src
+        const result = (new Promise((resolve, reject) => {
+            const imageToSave = new Image();
+            imageToSave.src = hiddenCanvas.current.toDataURL('image/png', 1.0);
+            imageToSave.onload = function() {
+              resolve(this.src);
+            };
+          }));
+          
+          return result;
         }
-       
 
+
+    
 
 //     3. You need to verify that the current combination of traits has not been used before. 
 //  There is a function checkDNA in the pfp contract where you pass in a string of the concatenated trait ids. Returns 0 if combo available. Returns 1 if taken.
@@ -262,7 +269,8 @@ className='hidden' />
     walletTraits = {walletTraits}
     saveImage = {saveImage}
     userAddress = {userAddress}
-    canvas = {chosenTrait}   
+    canvas = {chosenTrait}
+    savedImage = {savedImage} 
 />
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{
