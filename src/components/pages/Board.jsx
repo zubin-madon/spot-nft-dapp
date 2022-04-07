@@ -15,7 +15,7 @@ export const Board = () => {
     const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
     const spotNFTContract = '';
     const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-    const spotNFTContractFuji = '0x1BcaC9c748619578B8b420ff4E5536a55441fc42';
+    const spotNFTContractFuji = '0x60e26Afaca30396AAF91Ea3aA355aCf22eeF080e';
     const [filter, setFilter] = useState('');
 
     // async function handleMint(){
@@ -41,13 +41,14 @@ export const Board = () => {
         BodyID: '',
         Head: '',
         HeadID: '',
-        Headwear: '',
+        Headwear: 'None',
         HeadwearID: '599',
         Eyes: '',
         EyesID: '',
         Mouth: '',
         MouthID: ''
     })
+
     {/* For retrieval of traits */}
     const [walletTraits, setWalletTraits] = useState([])
     const [apiLoaded, setApiLoaded] = useState(false)
