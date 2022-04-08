@@ -227,7 +227,7 @@ className='hidden' />
 <div className='grow border-dashed border-4 border-slate-500 p-3 m-1 text-left col-span-1 w-96 md:mt-10 lg:mt-1 mt-10 sm:mt-10 text-sm'>
 {/* Individual Stats */}
 <div className='font-mono text-white list-none flex pb-3'>
-<div className= {`text-${walletTraits.includes(`${chosenTrait.BackgroundID}`)||solidBG.some(ai=> chosenTrait.BackgroundID==ai)?"spot-yellow":"[red]"} font-bold pr-3`}>Background: </div>
+<div className= {`text-${walletTraits.includes(`${chosenTrait.BackgroundID}`)||solidBG.some(ai=> chosenTrait.BackgroundID===ai)?"spot-yellow":"[red]"} font-bold pr-3`}>Background: </div>
 {chosenTrait.Background} (ID: {chosenTrait.BackgroundID})
 </div>
 
@@ -302,7 +302,6 @@ Traits not in your wallet.
       /></div>
 </div>{/* SearchBox Ends */}
 </div>{/* Canvas Row Div Ends*/}
-<img crossOrigin="anonymous" src={saveImage} alt="test result"></img>
 
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {dataSearch.map(createCard)}
