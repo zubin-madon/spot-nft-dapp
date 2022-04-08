@@ -49,11 +49,16 @@ export const Board = () => {
         MouthID: ''
     })
 
+    //Set an array of save background traits which are unburnable and available to all.
+    const start = 3;
+    const end = 9;
+    const solidBG = [...Array(end - start + 1).keys()].map(x => x + start);
+
     {/* For retrieval of traits */}
     const [walletTraits, setWalletTraits] = useState([])
     const [apiLoaded, setApiLoaded] = useState(false)
     const [checkMyTraits, setCheckMyTraits] = useState(false)
-    
+
     
     function getTraits() {
         const options = { chain: "0xa869", address: userAddress, token_address: spotTraitsContractFuji };
@@ -65,6 +70,8 @@ export const Board = () => {
         });
     
     }
+    
+    
     useEffect(()=>{
         getTraits();
     }, [checkMyTraits, account])
@@ -146,7 +153,6 @@ export const Board = () => {
         }
     , [canvasImage, canvas, windowWidth, windowHeight])
         const [savedImage, setSavedImage] = useState('empty image') //Saving image for sending to IPFS. This part isn't active yet!
-        
         function saveImage() {
         const result = (new Promise((resolve, reject) => {
             const imageToSave = new Image();
@@ -158,17 +164,6 @@ export const Board = () => {
           
           return result;
         }
-
-
-    
-
-//     3. You need to verify that the current combination of traits has not been used before. 
-//  There is a function checkDNA in the pfp contract where you pass in a string of the concatenated trait ids. Returns 0 if combo available. Returns 1 if taken.
-// 4. Before minting, user must approve the pfp contract to use their traits. Traits contract has a function setApprovalFor which takes in the pfp contractvaddress and a bool (true).
-// 4. Mint by passing in all the trait ids as individual ints. See contract function.
-// 5. Minting burns the traits and mints the pfp. It will emit the standard erc721 Mint event (listen for this in Moralis to get the token id)
-// 6. Now that you have the token ID, upload the image and Metadata to filebase
-// As another note in case you missed it. If the user selects no Headwear you must pass in 599 for the Headwear trait id
 
 //Calling Traits Contract and PFP Contract using Moralis below.
 const currentDNA = ""+chosenTrait.BackgroundID+chosenTrait.BodyID+chosenTrait.HeadID+chosenTrait.EyesID+chosenTrait.MouthID+chosenTrait.HeadwearID;
@@ -232,7 +227,7 @@ className='hidden' />
 <div className='grow border-dashed border-4 border-slate-500 p-3 m-1 text-left col-span-1 w-96 md:mt-10 lg:mt-1 mt-10 sm:mt-10 text-sm'>
 {/* Individual Stats */}
 <div className='font-mono text-white list-none flex pb-3'>
-<div className= {`text-${walletTraits.includes(`${chosenTrait.BackgroundID}`)?"spot-yellow":"[red]"} font-bold pr-3`}>Background: </div>
+<div className= {`text-${walletTraits.includes(`${chosenTrait.BackgroundID}`)||solidBG.some(ai=> chosenTrait.BackgroundID==ai)?"spot-yellow":"[red]"} font-bold pr-3`}>Background: </div>
 {chosenTrait.Background} (ID: {chosenTrait.BackgroundID})
 </div>
 
@@ -271,7 +266,8 @@ className='hidden' />
     saveImage = {saveImage}
     userAddress = {userAddress}
     canvas = {chosenTrait}
-    savedImage = {savedImage} 
+    savedImage = {savedImage}
+    solidBG = {solidBG} 
 />
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{

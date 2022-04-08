@@ -32,10 +32,12 @@ function Mint(props) {
       //   })  
         
       // }
-        
+
   function checkTraits() {
+    let isSafeBG = props.solidBG.some(ai=> props.chosenTrait.BackgroundID===ai)
+    console.log(isSafeBG)
     if (props.walletTraits.includes(String(props.chosenTrait.BackgroundID))&&props.walletTraits.includes(String(props.chosenTrait.BodyID))&&props.walletTraits.includes(String(props.chosenTrait.HeadID))&&
-    props.walletTraits.includes(String(props.chosenTrait.MouthID))&&props.walletTraits.includes(String(props.chosenTrait.EyesID))&&(props.walletTraits.includes(String(props.chosenTrait.HeadwearID))||props.chosenTrait.HeadwearID==='599')) {
+    props.walletTraits.includes(String(props.chosenTrait.MouthID))&&props.walletTraits.includes(String(props.chosenTrait.EyesID))&&(props.walletTraits.includes(String(props.chosenTrait.HeadwearID))||props.chosenTrait.HeadwearID==='599')||isSafeBG) {
         return true;
     }  else return false;
   }
