@@ -89,9 +89,9 @@ function Mint(props) {
         const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemintTest", {
                   metadata
               });
-    
-      const tokenMetadataUrl = await tokenMetadataUrlResult.path
-      console.log(tokenMetadataUrl)
+    console.log(tokenMetadataUrlResult)
+      //const tokenMetadataUrl = await tokenMetadataUrlResult.path
+      
       const mintResult = await mintFetch({
         params: {
             abi: spotNFTAbiFuji,
@@ -104,7 +104,7 @@ function Mint(props) {
                 eyes: props.chosenTrait.EyesID,
                 mouth: props.chosenTrait.MouthID,
                 headwear: props.chosenTrait.HeadwearID,
-                uri: tokenMetadataUrl,
+                uri: tokenMetadataUrlResult,
             },
             msgValue: Moralis.Units.ETH(1.0),
         },
