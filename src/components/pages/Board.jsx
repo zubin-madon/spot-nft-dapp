@@ -8,7 +8,7 @@ import spotNFTAbiFuji from '../../contracts/spotNFTAbiFuji.json';
 import spotTraitsAbiFuji from '../../contracts/spotTraitsAbiFuji.json';
 import SetApproval from '../SetApproval';
 import Mint from '../Mint';
-
+import { BackupBoard } from '../BackupBoard';
 export const Board = () => {
     const {account, isAuthenticated} = useMoralis();
     const userAddress = account
@@ -257,9 +257,8 @@ className='hidden' />
 </div>
 {/* End of Indiv Stats */}
 {/* Buttons */}
-<div className="pt-1 pb-1">
-{/* <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
-     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={null}>Mint</button> */}
+<div className="pt-1 pb-1 flex">
+
 <Mint 
     chosenTrait = {chosenTrait}
     walletTraits = {walletTraits}
@@ -267,16 +266,14 @@ className='hidden' />
     userAddress = {userAddress}
     canvas = {chosenTrait}
     savedImage = {savedImage}
-    solidBG = {solidBG} 
+    solidBG = {solidBG}
+    traitsAvailability = {traitsAvailability} 
 />
 <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{
     setCheckMyTraits(!checkMyTraits)
     }}>My Owned Traits</button>
 
-<button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
-    hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={saveImage}>Save Image</button>
-<SetApproval />   
 </div>
 {/* End of Buttons */}
 {/* Two bottom text lines */}
@@ -288,7 +285,7 @@ Traits in your wallet:  {apiLoaded,checkMyTraits&&walletTraits.length+' nos.'} {
 <div className='text-[red] pr-3 text-xl'>* </div>
 Traits not in your wallet.
 </div>
-<div className='font-mono text-white list-none flex pb-3 text-sm'><span className={traitsAvailability==='0'?"text-green-300":"text-red"}>
+<div className='font-mono text-white list-none flex pb-3 text-sm'><span className={traitsAvailability==='0'?"text-green-300":"text-[#fa2121]"}>
 {traitsAvailability==='0'&&currentDNA.length>=16?'Trait Combo is Unique!':null}
 {traitsAvailability==='1'&&currentDNA.length>=16?"Trait Combo's Been Minted!":null}</span>
 </div> {/* End of btm text lines */}
@@ -306,7 +303,7 @@ Traits not in your wallet.
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {dataSearch.map(createCard)}
     </div>
-    
+    <BackupBoard />
 </div>
   )
 }

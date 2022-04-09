@@ -8,7 +8,7 @@ import Moralis from 'moralis';
 
 function Mint(props) {
   console.log("rerender3")
-  const [legalMint, checkLegalMint] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
   const spotNFTContract = '';
   const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
@@ -22,16 +22,7 @@ function Mint(props) {
         return props.saveImage()
       }
 
-      // const cloudCall = () => {
-      //   getImage().then(async(image)=>{
-      //     const result = await Moralis.Cloud.run("handlemintTest", {
-      //             userAddress,
-      //             image
-      //         });
-      //     console.log(result)
-      //   })  
-        
-      // }
+  
 
   function checkTraits() {
     let isSafeBG = props.solidBG.some(ai=> props.chosenTrait.BackgroundID===ai)
@@ -43,12 +34,12 @@ function Mint(props) {
   }
 
   async function mintMyNFT() {
-
     if(!checkTraits()) {
       alert("Some of the selected traits are not in your wallet. Ensure all trait-titles are yellow. Click 'My Owned Traits' again to refresh wallet traits.")
     }
 
     else {
+      setIsLoading(true)
       const base64 = await getImage()
       const imageData = new Moralis.File("img.png", {base64: base64});
       await imageData.saveIPFS();
@@ -85,12 +76,10 @@ function Mint(props) {
           }
           ], 
       }
-
+        
         const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemintTest", {
                   metadata
               });
-    console.log(tokenMetadataUrlResult)
-      //const tokenMetadataUrl = await tokenMetadataUrlResult.path
       
       const mintResult = await mintFetch({
         params: {
@@ -109,23 +98,37 @@ function Mint(props) {
             msgValue: Moralis.Units.ETH(1.0),
         },
         onError: (err) => {
+            setIsLoading(false)
             alert(JSON.stringify(err.data.message));
+            
         },
         onSuccess: (data) => {
             console.log(data);
+            setIsLoading(false)
         },
     });
-      console.log(mintResult)
-
+      
+    setIsLoading(false)
          
     }
-
+    setIsLoading(false)
   }
-   
+   if(isLoading) {
+     return(
+    <div><button className="inline-flex m-2 rounded-lg px-4 py-2 border-2 border-spot-yellow text-spot-yellow
+     duration-300 font-mono font-bold text-base" disabled>
+  <svg className="inline animate-ping h-5 w-5 mr-3" viewBox="0 0 35 35">
+  <circle className="path" cx="12" cy="15" r="10" fill="yellow" stroke="yellow" strokeWidth="2"></circle>
+  </svg>
+  Processing...
+</button>
+</div>
+)
+   } else
     return (
     <div>
         <button className="m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
-     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={mintMyNFT}>Mint</button>
+     hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={mintMyNFT} disabled={props.traitsAvailability==='1'}>Mint</button>
     </div>
   )
 }
