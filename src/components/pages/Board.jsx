@@ -9,20 +9,16 @@ import spotTraitsAbiFuji from '../../contracts/spotTraitsAbiFuji.json';
 import SetApproval from '../SetApproval';
 import Mint from '../Mint';
 import { BackupBoard } from '../BackupBoard';
+
 export const Board = () => {
     const {account, isAuthenticated} = useMoralis();
     const userAddress = account
     const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
     const spotNFTContract = '';
     const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-    const spotNFTContractFuji = '0x60e26Afaca30396AAF91Ea3aA355aCf22eeF080e';
+    const spotNFTContractFuji = '0xAf8c4E9c77df06245F3718977f67a60CA7EAfF3D';
     const [filter, setFilter] = useState('');
 
-    // async function handleMint(){
-    //     const handlemint = await Moralis.Cloud.run("handlemint")
-    //     console.log(handlemint)
-    // }
-    // handleMint()
 
     {/* For Image retrieval */}
     const [canvasImage, setCanvasImage] = useState({
@@ -166,7 +162,7 @@ export const Board = () => {
         }
 
 //Calling Traits Contract and PFP Contract using Moralis below.
-const currentDNA = ""+chosenTrait.BackgroundID+chosenTrait.BodyID+chosenTrait.HeadID+chosenTrait.EyesID+chosenTrait.MouthID+chosenTrait.HeadwearID;
+const currentDNA = ""+chosenTrait.BodyID+chosenTrait.HeadID+chosenTrait.EyesID+chosenTrait.MouthID+chosenTrait.HeadwearID;
 const { data: traitData, error: traitError, fetch: traitFetch, isFetching: traitFetching, isLoading: traitLoading } = useWeb3ExecuteFunction({
     abi: spotNFTAbiFuji,
     contractAddress: spotNFTContractFuji,
@@ -186,9 +182,8 @@ const { data: pfpData, error: pfpError, fetch: pfpFetch, isFetching: pfpFetching
 
 //Pass current DNA of selected traits in checkDNA function of NFT contract. Set Availability to 0 if available.
 const [traitsAvailability, setTraitsAvailability] = useState('1')
-useEffect(function() {
-    
-    if(currentDNA.length >15) {
+useEffect(function() {  
+    if(currentDNA.length >14) {
         traitFetch()
         .then((data)=> setTraitsAvailability(JSON.stringify(data)))
     }
@@ -286,8 +281,8 @@ Traits in your wallet:  {apiLoaded,checkMyTraits&&walletTraits.length+' nos.'} {
 Traits not in your wallet.
 </div>
 <div className='font-mono text-white list-none flex pb-3 text-sm'><span className={traitsAvailability==='0'?"text-green-300":"text-[#fa2121]"}>
-{traitsAvailability==='0'&&currentDNA.length>=16?'Trait Combo is Unique!':null}
-{traitsAvailability==='1'&&currentDNA.length>=16?"Trait Combo's Been Minted!":null}</span>
+{traitsAvailability==='0'&&currentDNA.length>=14?'Trait Combo is Unique!':null}
+{traitsAvailability==='1'&&currentDNA.length>=14?"Trait Combo's Been Minted!":null}</span>
 </div> {/* End of btm text lines */}
 </div>{/* Stats div Ends*/}
 {/* SearchBox */}

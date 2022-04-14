@@ -7,12 +7,11 @@ import Moralis from 'moralis';
 
 
 function Mint(props) {
-  console.log("rerender3")
   const [isLoading, setIsLoading] = useState(false)
   const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
   const spotNFTContract = '';
   const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-  const spotNFTContractFuji = '0x60e26Afaca30396AAF91Ea3aA355aCf22eeF080e';
+  const spotNFTContractFuji = '0xAf8c4E9c77df06245F3718977f67a60CA7EAfF3D';
 
   let userAddress = props.userAddress
 
@@ -22,11 +21,9 @@ function Mint(props) {
         return props.saveImage()
       }
 
-  
-
   function checkTraits() {
     let isSafeBG = props.solidBG.some(ai=> props.chosenTrait.BackgroundID===ai)
-    console.log(isSafeBG)
+ 
     if ((props.walletTraits.includes(String(props.chosenTrait.BackgroundID))||isSafeBG)&&props.walletTraits.includes(String(props.chosenTrait.BodyID))&&props.walletTraits.includes(String(props.chosenTrait.HeadID))&&
     props.walletTraits.includes(String(props.chosenTrait.MouthID))&&props.walletTraits.includes(String(props.chosenTrait.EyesID))&&(props.walletTraits.includes(String(props.chosenTrait.HeadwearID))||props.chosenTrait.HeadwearID==='599')) {
         return true;
