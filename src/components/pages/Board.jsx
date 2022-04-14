@@ -247,7 +247,7 @@ className='hidden' />
 </div>
 
 <div className='font-mono text-white list-none flex pb-3'>
-<div className={`text-spot-yellow font-bold pr-3`}>Headwear: </div>
+<div className={`text-${walletTraits.includes(`${chosenTrait.HeadwearID}`)||chosenTrait.HeadwearID==='599'?"spot-yellow":"[red]"} font-bold pr-3`}>Headwear: </div>
 {chosenTrait.Headwear} (ID: {chosenTrait.HeadwearID})
 </div>
 {/* End of Indiv Stats */}
