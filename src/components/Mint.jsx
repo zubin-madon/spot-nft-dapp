@@ -92,7 +92,7 @@ function Mint(props) {
                 headwear: props.chosenTrait.HeadwearID,
                 uri: tokenMetadataUrlResult,
             },
-            msgValue: Moralis.Units.ETH(1.0),
+            msgValue: Moralis.Units.ETH(0.3),
         },
         onError: (err) => {
             setIsLoading(false)
