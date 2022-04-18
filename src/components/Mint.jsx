@@ -1,7 +1,7 @@
 import { stringify } from 'postcss';
 import React, { useEffect, useState } from 'react'
 import { useWeb3ExecuteFunction, useMoralisCloudFunction } from "react-moralis";
-import spotNFTAbiFuji from '../contracts/spotNFTAbiFuji.json';
+import spotNFTAbi from '../contracts/spotNFTAbi.json';
 import Moralis from 'moralis';
 
 
@@ -9,9 +9,7 @@ import Moralis from 'moralis';
 function Mint(props) {
   const [isLoading, setIsLoading] = useState(false)
   const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
-  const spotNFTContract = '';
-  const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-  const spotNFTContractFuji = '0xAf8c4E9c77df06245F3718977f67a60CA7EAfF3D';
+  const spotNFTContract = '0x9455aa2aF62B529E49fBFE9D10d67990C0140AFC';
 
   let userAddress = props.userAddress
 
@@ -74,14 +72,14 @@ function Mint(props) {
           ], 
       }
         
-        const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemintTest", {
+        const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemint", {
                   metadata
               });
       
       const mintResult = await mintFetch({
         params: {
-            abi: spotNFTAbiFuji,
-            contractAddress: spotNFTContractFuji,
+            abi: spotNFTAbi,
+            contractAddress: spotNFTContract,
             functionName: "mint",
             params: {
                 bg: props.chosenTrait.BackgroundID,
@@ -99,16 +97,14 @@ function Mint(props) {
             alert(JSON.stringify(err.data.message));
             
         },
-        onSuccess: (data) => {
-            console.log(data);
-            setIsLoading(false)
-        },
+        onSuccess: (tx) => {
+          tx.wait(2).then(alert("Minted successfully! View your NFT on NFTrade, Kalao or Campfire!"))
+          .then(setIsLoading(false))
+          .then(console.log(tx))
+        }
     });
-      
-    setIsLoading(false)
          
     }
-    setIsLoading(false)
   }
    if(isLoading) {
      return(

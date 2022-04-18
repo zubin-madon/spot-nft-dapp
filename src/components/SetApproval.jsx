@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction, useChain } from "react-moralis";
-import spotNFTAbiFuji from '../contracts/spotNFTAbiFuji.json';
-import spotTraitsAbiFuji from '../contracts/spotTraitsAbiFuji.json';
+import spotTraitsAbi from '../contracts/spotTraitsAbi.json';
 
 
 function SetApproval() {
   //isApprovedForAll(account, operator) - function imported from OpenZeppelin IERC1155
   //setApprovalForAll(operator, approved) - function imported from OpenZeppelin IERC1155
   const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
-  const spotNFTContract = '';
-  const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-  const spotNFTContractFuji = '0x1BcaC9c748619578B8b420ff4E5536a55441fc42';
+  const spotNFTContract = '0x9455aa2aF62B529E49fBFE9D10d67990C0140AFC';
     const { account } = useMoralis();
     const { switchNetwork, chainId } = useChain()
     const { data: approvalData, error: approvalError, fetch: approvalFetch, isFetching: approvalFetching, isLoading: approvalLoading } = useWeb3ExecuteFunction({
-        abi: spotTraitsAbiFuji,
-        contractAddress: spotTraitsContractFuji,
+        abi: spotTraitsAbi,
+        contractAddress: spotTraitsContract,
         functionName: "setApprovalForAll",
         params: {
-        operator: spotNFTContractFuji,
+        operator: spotNFTContract,
         approved: true
              },
          });
 
     const { data: checkApprovedData, error: checkApprovedError, fetch: checkApprovedFetch, isFetching: checkApprovedFetching, isLoading: checkApprovedLoading } = useWeb3ExecuteFunction({
-    abi: spotTraitsAbiFuji,
-    contractAddress: spotTraitsContractFuji,
+    abi: spotTraitsAbi,
+    contractAddress: spotTraitsContract,
     functionName: "isApprovedForAll",
     params: {
         account: account,
-        operator: spotNFTContractFuji
+        operator: spotNFTContract
             },
         });
     const [traitsApproved, setTraitsApproved] = useState(false)

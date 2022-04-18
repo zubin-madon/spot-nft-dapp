@@ -4,8 +4,8 @@ import traits from '../../traits';
 import { useMoralis, useWeb3ExecuteFunction} from "react-moralis";
 import Moralis from 'moralis';
 import Authenticate from '../Authenticate';
-import spotNFTAbiFuji from '../../contracts/spotNFTAbiFuji.json';
-import spotTraitsAbiFuji from '../../contracts/spotTraitsAbiFuji.json';
+import spotNFTAbi from '../../contracts/spotNFTAbi.json';
+import spotTraitsAbi from '../../contracts/spotTraitsAbi.json';
 import SetApproval from '../SetApproval';
 import Mint from '../Mint';
 import { BackupBoard } from '../BackupBoard';
@@ -13,10 +13,9 @@ import { BackupBoard } from '../BackupBoard';
 export const Board = () => {
     const {account, isAuthenticated} = useMoralis();
     const userAddress = account
-    const spotTraitsContract = "0x9521807adf320d1cdf87afdf875bf438d1d92d87";
-    const spotNFTContract = '';
-    const spotTraitsContractFuji = '0xD1cebaDdf3a76CD1E628e8Ce541fC700c64Afe47';
-    const spotNFTContractFuji = '0xAf8c4E9c77df06245F3718977f67a60CA7EAfF3D';
+    const spotTraitsContract = "0x9521807ADF320D1CDF87AFDf875Bf438d1D92d87";
+    const spotNFTContract = '0x9455aa2aF62B529E49fBFE9D10d67990C0140AFC';
+
     const [filter, setFilter] = useState('');
 
 
@@ -57,7 +56,7 @@ export const Board = () => {
 
     
     function getTraits() {
-        const options = { chain: "0xa869", address: userAddress, token_address: spotTraitsContractFuji };
+        const options = { chain: "0xa86a", address: userAddress, token_address: spotTraitsContract };
         Moralis.Web3API.account.getNFTsForContract(options).then((data)=>{
             const result = data.result
             setWalletTraits(result.map(nft=>nft.token_id))
@@ -144,8 +143,6 @@ export const Board = () => {
         drawImage(canvasImage.Eyes);
         drawImage(canvasImage.Mouth);
         drawImage(canvasImage.Headwear);
-
-        
         }
     , [canvasImage, canvas, windowWidth, windowHeight])
         const [savedImage, setSavedImage] = useState('empty image') //Saving image for sending to IPFS. This part isn't active yet!
@@ -164,16 +161,16 @@ export const Board = () => {
 //Calling Traits Contract and PFP Contract using Moralis below.
 const currentDNA = ""+chosenTrait.BodyID+chosenTrait.HeadID+chosenTrait.EyesID+chosenTrait.MouthID+chosenTrait.HeadwearID;
 const { data: traitData, error: traitError, fetch: traitFetch, isFetching: traitFetching, isLoading: traitLoading } = useWeb3ExecuteFunction({
-    abi: spotNFTAbiFuji,
-    contractAddress: spotNFTContractFuji,
+    abi: spotNFTAbi,
+    contractAddress: spotNFTContract,
     functionName: "checkDNA",
     params: {
     DNA: currentDNA,
     },
 });
 const { data: pfpData, error: pfpError, fetch: pfpFetch, isFetching: pfpFetching, isLoading: pfpLoading } = useWeb3ExecuteFunction({
-    abi: spotTraitsAbiFuji,
-    contractAddress: spotTraitsContractFuji,
+    abi: spotTraitsAbi,
+    contractAddress: spotTraitsContract,
     functionName: "checkDNA",
     params: {
     DNA: currentDNA,
