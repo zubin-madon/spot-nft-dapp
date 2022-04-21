@@ -69,7 +69,7 @@ export const Board = () => {
     
     useEffect(()=>{
         getTraits();
-    }, [checkMyTraits, account])
+    }, [account])
 
     function updateCanvasTraits(trait) {
         setCanvasImage(prevImage=>({...prevImage, [trait.traitType]:trait.image}))
@@ -99,6 +99,14 @@ export const Board = () => {
         return Object.keys(item).some(key =>item[key].toString().toLowerCase().includes(filter.toString().toLowerCase())
         )
     });
+    let ownedFilter = traits.filter(item=> {
+    
+        if(walletTraits.includes(item.id.toString())) {
+            
+            return item
+        }
+    
+    })
 
     // Putting stuff on Canvas
     const canvas = useRef(null)
@@ -185,6 +193,9 @@ useEffect(function() {
         .then((data)=> setTraitsAvailability(JSON.stringify(data)))
     }
             },[chosenTrait])
+
+ // Add feature: Filter owned trait cards
+ const [ownedCards, setOwnedCards] = useState(false)        
 //---------------------------------//
 
     if (!isAuthenticated) {
@@ -283,17 +294,24 @@ Traits not in your wallet.
 </div> {/* End of btm text lines */}
 </div>{/* Stats div Ends*/}
 {/* SearchBox */}
-<div className="grid grid-rows-1 grid-cols-12 gap-4 pt-10 pl-10 self-end">
+<div className="grid grid-rows-1 grid-cols-1 gap-4 pt-10 pl-10 self-end">
     <div className='col-span-1'><input type="text" 
         className="border-2 border-slate-600 bg-slate-400 text-left font-mono placeholder-slate-600 pl-2" placeholder="search trait/ID..."
         value={filter}
         onChange={searchText.bind(this)}
       /></div>
+
+<div className='self-end'>
+<button className="w-1/3 m-2 rounded-lg px-4 py-2 border-2 border-gray-200 text-gray-200
+    hover:bg-gray-200 hover:text-gray-900 duration-300 font-mono font-bold text-base" onClick={()=>{
+    setOwnedCards(!ownedCards)
+    }}>{!ownedCards?'My Traits':'All Traits'}</button></div>
 </div>{/* SearchBox Ends */}
+      
 </div>{/* Canvas Row Div Ends*/}
 
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
-      {dataSearch.map(createCard)}
+      {ownedCards?ownedFilter.map(createCard):dataSearch.map(createCard)}
     </div>
     <BackupBoard />
 </div>
