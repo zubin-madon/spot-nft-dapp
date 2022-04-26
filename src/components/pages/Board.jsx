@@ -8,7 +8,6 @@ import spotNFTAbi from '../../contracts/spotNFTAbi.json';
 import spotTraitsAbi from '../../contracts/spotTraitsAbi.json';
 import SetApproval from '../SetApproval';
 import Mint from '../Mint';
-import { BackupBoard } from '../BackupBoard';
 
 export const Board = () => {
     const {account, isAuthenticated} = useMoralis();
