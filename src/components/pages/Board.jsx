@@ -309,11 +309,10 @@ Traits not in your wallet.
 </div>{/* SearchBox Ends */}
       
 </div>{/* Canvas Row Div Ends*/}
-
+<div className='overflow-y-auto'>
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {ownedCards?ownedFilter.map(createCard):dataSearch.map(createCard)}
-    </div>
-    <BackupBoard />
+    </div></div>
 </div>
   )
 }

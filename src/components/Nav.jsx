@@ -9,7 +9,7 @@ export const Nav = () => {
       {name:"Home", link:"/"},
       {name:"Roadmap", link:"/roadmap"},
       {name:"Team", link:"/team"},
-      {name:"Spot Mint", link:"https://thespotnft.com/"},
+      {name:"Spot-Links", link:"/ecosystem"},
       {name:"Twitter", link:"https://twitter.com/TheSpotnft"},
       {name:"Discord", link:"https://discord.com/invite/4wvC6xTFyB"}
   ];

@@ -10,6 +10,7 @@ import Roadmap from "./components/pages/roadmap";
 import Team from "./components/pages/team";
 import Footer from "./components/Footer";
 import Moralis from "moralis";
+import SpotEcosystem from "./components/pages/SpotEcosystem";
 
 function App() {
   
@@ -50,6 +51,7 @@ function App() {
           <Route path="/Home" exact element={<Board />} />
           <Route path="/roadmap" exact element={<Roadmap />} />
           <Route path="/team" exact element={<Team />} />
+          <Route path="/ecosystem" exact element={<SpotEcosystem />} />
         </Routes>
       </div>
       

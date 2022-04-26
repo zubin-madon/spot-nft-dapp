@@ -21,7 +21,6 @@ function Mint(props) {
 
   function checkTraits() {
     let isSafeBG = props.solidBG.some(ai=> props.chosenTrait.BackgroundID===ai)
- 
     if ((props.walletTraits.includes(String(props.chosenTrait.BackgroundID))||isSafeBG)&&props.walletTraits.includes(String(props.chosenTrait.BodyID))&&props.walletTraits.includes(String(props.chosenTrait.HeadID))&&
     props.walletTraits.includes(String(props.chosenTrait.MouthID))&&props.walletTraits.includes(String(props.chosenTrait.EyesID))&&(props.walletTraits.includes(String(props.chosenTrait.HeadwearID))||props.chosenTrait.HeadwearID==='599')) {
         return true;
@@ -70,12 +69,10 @@ function Mint(props) {
             "value": props.chosenTrait.Headwear
           }
           ], 
-      }
-        
+      }  
         const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemint", {
                   metadata
-              });
-      
+              }); 
       const mintResult = await mintFetch({
         params: {
             abi: spotNFTAbi,
@@ -98,7 +95,7 @@ function Mint(props) {
             
         },
         onSuccess: (tx) => {
-          tx.wait(2).then(alert("Minted successfully! View your NFT on NFTrade, Kalao or Campfire!"))
+          tx.wait(2).then(alert("Minted successfully! View your NFT on Kalao or Campfire!"))
           .then(setIsLoading(false))
           .then(console.log(tx))
         }
