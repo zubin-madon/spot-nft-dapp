@@ -100,7 +100,7 @@ export const Board = () => {
     });
     let ownedFilter = traits.filter(item=> {
     
-        if(walletTraits.includes(item.id.toString())) {
+        if(walletTraits.includes(item.id.toString())||solidBG.includes(item.id)) {
             
             return item
         }
