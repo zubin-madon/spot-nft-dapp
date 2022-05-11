@@ -64,6 +64,7 @@ import image157 from './traitImages/157.png'
 import image158 from './traitImages/158.png'
 import image159 from './traitImages/159.png'
 import image160 from './traitImages/160.png'
+import image161 from './traitImages/161.png'
 import image2 from './traitImages/2.png'
 import image200 from './traitImages/200.png'
 import image201 from './traitImages/201.png'
@@ -736,6 +737,13 @@ const traits = [
       traitName: 'Tracksuit',
       traitType: 'Body',
       rarity: 'Uncommon'
+    },
+    {
+      id: 161,
+      image: image161,
+      traitName: 'Baller',
+      traitType: 'Body',
+      rarity: 'Rare'
     },
     {
       id: 200,
