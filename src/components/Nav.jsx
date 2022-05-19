@@ -10,6 +10,7 @@ export const Nav = () => {
       {name:"Roadmap", link:"/roadmap"},
       {name:"Team", link:"/team"},
       {name:"Spot-Links", link:"/ecosystem"},
+      {name:"Buy Traits", link:"https://nftrade.com/assets/avalanche/0x9521807adf320d1cdf87afdf875bf438d1d92d87"},
       {name:"Twitter", link:"https://twitter.com/TheSpotnft"},
       {name:"Discord", link:"https://discord.com/invite/4wvC6xTFyB"}
   ];
