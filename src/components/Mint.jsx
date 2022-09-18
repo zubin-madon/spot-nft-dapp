@@ -70,23 +70,27 @@ function Mint(props) {
           }
           ], 
       }  
-        const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemint", {
+       /* const tokenMetadataUrlResult = await Moralis.Cloud.run("handlemint", {
                   metadata
-              }); 
+              }); */
+      
+      const metaDataFile = new Moralis.File("file.json", { base64: btoa(JSON.stringify(metadata)) });
+      await metaDataFile.saveIPFS();
+      const metaDataUrl = await metaDataFile.ipfs();
       const mintResult = await mintFetch({
         params: {
-            abi: spotNFTAbi,
-            contractAddress: spotNFTContract,
-            functionName: "mint",
-            params: {
-                bg: props.chosenTrait.BackgroundID,
-                body: props.chosenTrait.BodyID,
-                head: props.chosenTrait.HeadID,
-                eyes: props.chosenTrait.EyesID,
-                mouth: props.chosenTrait.MouthID,
-                headwear: props.chosenTrait.HeadwearID,
-                uri: tokenMetadataUrlResult,
-            },
+          abi: spotNFTAbi,
+          contractAddress: spotNFTContract,
+          functionName: "mint",
+          params: {
+            bg: props.chosenTrait.BackgroundID,
+            body: props.chosenTrait.BodyID,
+            head: props.chosenTrait.HeadID,
+            eyes: props.chosenTrait.EyesID,
+            mouth: props.chosenTrait.MouthID,
+            headwear: props.chosenTrait.HeadwearID,
+            uri: metaDataUrl,
+          },
             msgValue: Moralis.Units.ETH(0.3),
         },
         onError: (err) => {
