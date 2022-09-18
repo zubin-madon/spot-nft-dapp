@@ -312,6 +312,11 @@ Traits not in your wallet.
     <div className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-6 gap-5 font-mono text-spot-yellow">
       {ownedCards?ownedFilter.map(createCard):dataSearch.map(createCard)}
     </div></div>
+        {showButton && (
+                        <button onClick={scrollToTop} className="back-to-top">
+                            &#94;
+                        </button>
+                    )}
 </div>
   )
 }
