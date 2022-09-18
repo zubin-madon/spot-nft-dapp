@@ -27,6 +27,22 @@
 .App-link {
   color: #61dafb;
 }
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  font-size: 60px;
+  background: rgb(30, 41, 59);
+  color: rgb(170, 170, 170);
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+
+}
+
+.back-to-top:hover {
+  background: yellow;
+}
 
 @keyframes App-logo-spin {
   from {
