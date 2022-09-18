@@ -16,7 +16,24 @@ export const Board = () => {
     const spotNFTContract = '0x9455aa2aF62B529E49fBFE9D10d67990C0140AFC';
 
     const [filter, setFilter] = useState('');
+    const [showButton, setShowButton] = useState(false);
 
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                setShowButton(true);
+            } else {
+                setShowButton(false);
+            }
+        });
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // for smoothly scrolling
+        });
+    };
 
     {/* For Image retrieval */}
     const [canvasImage, setCanvasImage] = useState({
