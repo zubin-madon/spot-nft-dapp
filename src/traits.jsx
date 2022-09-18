@@ -65,6 +65,16 @@ import image158 from './traitImages/158.png'
 import image159 from './traitImages/159.png'
 import image160 from './traitImages/160.png'
 import image161 from './traitImages/161.png'
+import image162 from './traitImages/162.png'
+import image163 from './traitImages/163.png'
+import image164 from './traitImages/164.png'
+import image165 from './traitImages/165.png'
+import image166 from './traitImages/166.png'
+import image167 from './traitImages/167.png'
+import image168 from './traitImages/168.png'
+import image169 from './traitImages/169.png'
+import image170 from './traitImages/170.png'
+import image171 from './traitImages/171.png'
 import image2 from './traitImages/2.png'
 import image200 from './traitImages/200.png'
 import image201 from './traitImages/201.png'
@@ -86,6 +96,9 @@ import image216 from './traitImages/216.png'
 import image217 from './traitImages/217.png'
 import image218 from './traitImages/218.png'
 import image219 from './traitImages/219.png'
+import image220 from './traitImages/220.png'
+import image221 from './traitImages/221.png'
+import image222 from './traitImages/222.png'
 import image3 from './traitImages/3.png'
 import image300 from './traitImages/300.png'
 import image301 from './traitImages/301.png'
@@ -131,6 +144,14 @@ import image340 from './traitImages/340.png'
 import image341 from './traitImages/341.png'
 import image342 from './traitImages/342.png'
 import image343 from './traitImages/343.png'
+import image344 from './traitImages/344.png'
+import image345 from './traitImages/345.png'
+import image346 from './traitImages/346.png'
+import image347 from './traitImages/347.png'
+import image348 from './traitImages/348.png'
+import image349 from './traitImages/349.png'
+import image350 from './traitImages/350.png'
+import image351 from './traitImages/351.png'
 import image4 from './traitImages/4.png'
 import image400 from './traitImages/400.png'
 import image401 from './traitImages/401.png'
@@ -164,6 +185,15 @@ import image429 from './traitImages/429.png'
 import image430 from './traitImages/430.png'
 import image431 from './traitImages/431.png'
 import image432 from './traitImages/432.png'
+import image433 from './traitImages/433.png'
+import image434 from './traitImages/434.png'
+import image435 from './traitImages/435.png'
+import image436 from './traitImages/436.png'
+import image437 from './traitImages/437.png'
+import image438 from './traitImages/438.png'
+import image439 from './traitImages/439.png'
+import image440 from './traitImages/440.png'
+import image441 from './traitImages/441.png'
 import image5 from './traitImages/5.png'
 import image6 from './traitImages/6.png'
 import image600 from './traitImages/600.png'
@@ -214,6 +244,13 @@ import image645 from './traitImages/645.png'
 import image646 from './traitImages/646.png'
 import image647 from './traitImages/647.png'
 import image648 from './traitImages/648.png'
+import image649 from './traitImages/649.png'
+import image650 from './traitImages/650.png'
+import image651 from './traitImages/651.png'
+import image652 from './traitImages/652.png'
+import image653 from './traitImages/653.png'
+import image654 from './traitImages/654.png'
+import image655 from './traitImages/655.png'
 import image7 from './traitImages/7.png'
 import image8 from './traitImages/8.png'
 import image9 from './traitImages/9.png'
@@ -745,6 +782,69 @@ const traits = [
       traitType: 'Body',
       rarity: 'Rare'
     },
+      {
+      id: 162,
+      image: image162,
+      traitName: 'Conair',
+      traitType: 'Body',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 163,
+      image: image163,
+      traitName: 'Maul',
+      traitType: 'Body',
+      rarity: 'Legendary'
+    },
+      {
+      id: 164,
+      image: image164,
+      traitName: 'Vampire',
+      traitType: 'Body',
+      rarity: 'Rare'
+    },
+      {
+      id: 165,
+      image: image165,
+      traitName: 'Hehehe',
+      traitType: 'Body',
+      rarity: 'Rare'
+    },
+      {
+      id: 166,
+      image: image166,
+      traitName: 'Macho',
+      traitType: 'Body',
+      rarity: 'Legendary'
+    },
+      {
+      id: 167,
+      image: image167,
+      traitName: 'Mergoat',
+      traitType: 'Body',
+      rarity: 'Common'
+    },
+      {
+      id: 168,
+      image: image168,
+      traitName: 'Swamp',
+      traitType: 'Body',
+      rarity: 'Rare'
+    },
+      {
+      id: 169,
+      image: image169,
+      traitName: 'Wolf',
+      traitType: 'Body',
+      rarity: 'Rare'
+    },
+      {
+      id: 170,
+      image: image170,
+      traitName: 'HipHop',
+      traitType: 'Body',
+      rarity: 'Rare'
+    },
     {
       id: 200,
       image: image200,
@@ -882,6 +982,27 @@ const traits = [
       id: 219,
       image: image219,
       traitName: 'Android',
+      traitType: 'Head',
+      rarity: 'Rare'
+    },
+      {
+      id: 220,
+      image: image220,
+      traitName: 'Maul',
+      traitType: 'Head',
+      rarity: 'Legendary'
+    },
+      {
+      id: 221,
+      image: image221,
+      traitName: 'Swamp',
+      traitType: 'Head',
+      rarity: 'Rare'
+    },
+      {
+      id: 222,
+      image: image222,
+      traitName: 'Wolf',
       traitType: 'Head',
       rarity: 'Rare'
     },
@@ -1193,6 +1314,62 @@ const traits = [
       traitType: 'Eyes',
       rarity: 'Uncommon'
     },
+      {
+      id: 344,
+      image: image344,
+      traitName: 'Maul',
+      traitType: 'Eyes',
+      rarity: 'Rare'
+    },
+      {
+      id: 345,
+      image: image345,
+      traitName: 'Vampire',
+      traitType: 'Eyes',
+      rarity: 'Rare'
+    },
+      {
+      id: 346,
+      image: image346,
+      traitName: 'Hehehe',
+      traitType: 'Eyes',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 347,
+      image: image347,
+      traitName: 'Macho',
+      traitType: 'Eyes',
+      rarity: 'Legendary'
+    },
+      {
+      id: 348,
+      image: image348,
+      traitName: 'Spiral',
+      traitType: 'Eyes',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 349,
+      image: image349,
+      traitName: 'Swamp',
+      traitType: 'Eyes',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 350,
+      image: image350,
+      traitName: 'Wolf',
+      traitType: 'Eyes',
+      rarity: 'Rare'
+    },
+      {
+      id: 351,
+      image: image351,
+      traitName: 'HipHop',
+      traitType: 'Eyes',
+      rarity: 'Rare'
+    },
     {
       id: 400,
       image: image400,
@@ -1416,6 +1593,69 @@ const traits = [
       traitName: 'Toss Up',
       traitType: 'Mouth',
       rarity: 'Legendary'
+    },
+      {
+      id: 433,
+      image: image433,
+      traitName: 'Conair',
+      traitType: 'Mouth',
+      rarity: 'Common'
+    },
+      {
+      id: 434,
+      image: image434,
+      traitName: 'Maul',
+      traitType: 'Mouth',
+      rarity: 'Rare'
+    },
+      {
+      id: 435,
+      image: image435,
+      traitName: 'Vampire',
+      traitType: 'Mouth',
+      rarity: 'Rare'
+    },
+      {
+      id: 436,
+      image: image436,
+      traitName: 'Gold Tooth',
+      traitType: 'Mouth',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 437,
+      image: image437,
+      traitName: 'Hehehe',
+      traitType: 'Mouth',
+      rarity: 'Uncommon'
+    },
+      {
+      id: 438,
+      image: image438,
+      traitName: 'Macho',
+      traitType: 'Mouth',
+      rarity: 'Legendary'
+    },
+      {
+      id: 439,
+      image: image439,
+      traitName: 'Swamp',
+      traitType: 'Mouth',
+      rarity: 'Rare'
+    },
+      {
+      id: 440,
+      image: image440,
+      traitName: 'Wolf',
+      traitType: 'Mouth',
+      rarity: 'Rare'
+    },
+      {
+      id: 441,
+      image: image441,
+      traitName: 'HipHop',
+      traitType: 'Mouth',
+      rarity: 'Uncommon'
     },
     {
       id: 600,
@@ -1753,7 +1993,55 @@ const traits = [
       traitType: 'Headwear',
       rarity: 'Legendary'
     },
-
+    {
+      id: 649,
+      image: image649,
+      traitName: 'Conair',
+      traitType: 'Headwear',
+      rarity: 'Common'
+    },
+    {
+      id: 650,
+      image: image650,
+      traitName: 'Vampire',
+      traitType: 'Headwear',
+      rarity: 'Rare'
+    },
+      {
+      id: 651,
+      image: image651,
+      traitName: 'Green Pigtails',
+      traitType: 'Headwear',
+      rarity: 'Common'
+    },
+    {
+      id: 652,
+      image: image652,
+      traitName: 'Hehehe',
+      traitType: 'Headwear',
+      rarity: 'Rare'
+    },
+      {
+      id: 653,
+      image: image653,
+      traitName: 'Macho Hair',
+      traitType: 'Headwear',
+      rarity: 'Legendary'
+    },
+      {
+      id: 654,
+      image: image654,
+      traitName: 'Macho',
+      traitType: 'Headwear',
+      rarity: 'Legendary'
+    },
+    {
+      id: 655,
+      image: image655,
+      traitName: 'HipHop',
+      traitType: 'Headwear',
+      rarity: 'Rare'
+    },
 
 ]
 export default traits;
