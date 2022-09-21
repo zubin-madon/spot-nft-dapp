@@ -1,0 +1,23 @@
+{
+    "name": "The Spot Trait Drops",
+    "description": "GOATd Trait Drops",
+    "image": "https://thespot.mypinata.cloud/ipfs/QmdfeGjwa7vgKrwu8xPsaQ3yzjGvhSTiE9AQ4qnhLhpFSx/18.png",
+    "attributes": [
+        {
+            "trait_type": "Trait Type",
+            "value": "Background"
+        },
+        {
+            "trait_type": "Trait",
+            "value": "Swamp"
+        },
+        {
+            "trait_type": "Rarity",
+            "value": "Common"
+        },
+        {
+            "trait_type": "ID",
+            "value": "18"
+        }
+    ]
+}
