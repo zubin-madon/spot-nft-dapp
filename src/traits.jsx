@@ -253,6 +253,11 @@ import image655 from './traitImages/655.png'
 import image7 from './traitImages/7.png'
 import image8 from './traitImages/8.png'
 import image9 from './traitImages/9.png'
+import image14 from './traitImages/14.png'
+import image15 from './traitImages/15.png'
+import image16 from './traitImages/16.png'
+import image17 from './traitImages/17.png'
+import image18 from './traitImages/18.png'
 
 
 const traits = [
@@ -347,6 +352,41 @@ const traits = [
       traitType: 'Background',
       rarity: 'Rare'
     },
+  {
+    id: 14,
+    image: image14,
+    traitName: 'Cemetery',
+    traitType: 'Background',
+    rarity: 'Common'
+  },
+  {
+    id: 15,
+    image: image15,
+    traitName: 'Maul',
+    traitType: 'Background',
+    rarity: 'Common'
+  },
+  {
+    id: 16,
+    image: image16,
+    traitName: 'Full Moon',
+    traitType: 'Background',
+    rarity: 'Common'
+  },
+  {
+    id: 17,
+    image: image17,
+    traitName: 'Mountains',
+    traitType: 'Background',
+    rarity: 'Common'
+  },
+  {
+    id: 18,
+    image: image18,
+    traitName: 'Swamp',
+    traitType: 'Background',
+    rarity: 'Common'
+  },
     {
       id: 100,
       image: image100,
