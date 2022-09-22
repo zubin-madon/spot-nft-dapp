@@ -253,9 +253,9 @@ className='hidden' />
 {/* Stats div*/}
 <div className='grow border-dashed border-4 border-slate-500 p-3 m-1 text-left col-span-1 w-96 md:mt-10 lg:mt-1 mt-10 sm:mt-10 text-sm'>
 {/* Individual Stats */}
- <div className='font-mono text-white list-none flex pb-3'>
+      <div className='font-mono text-white list-none flex pb-3'>
                             <div className={`text-${(walletTraits.includes(`${chosenTrait.BackgroundID}`)) || (solidBG.some(ai => chosenTrait.BackgroundID === ai)) ? "spot-yellow" : "[red]"} font-bold pr-3`}>Background: </div>
-                            {chosenTrait.Background} (ID: {chosenTrait.BackgroundID}) <div className={`${walletTraits.includes(`${chosenTrait.BackgroundID}`) ? "hidden" : "pl-2 cursor-pointer text-[red] font-bold"}`} onClick={onClickUrl(`https://joepegs.com/item/0x9521807adf320d1cdf87afdf875bf438d1d92d87/${chosenTrait.BackgroundID}/`)} > Buy Now!</div>
+                            {chosenTrait.Background} (ID: {chosenTrait.BackgroundID}) <div className={`${(walletTraits.includes(`${chosenTrait.BackgroundID}`)) || (solidBG.some(ai => chosenTrait.BackgroundID === ai)) ? "hidden" : "pl-2 cursor-pointer text-[red] font-bold"}`} onClick={onClickUrl(`https://joepegs.com/item/0x9521807adf320d1cdf87afdf875bf438d1d92d87/${chosenTrait.BackgroundID}/`)} > Buy Now!</div>
                         </div>
 
                         <div className='font-mono text-white list-none flex pb-3'>
