@@ -17,6 +17,14 @@ export const Board = () => {
 
     const [filter, setFilter] = useState('');
     const [showButton, setShowButton] = useState(false);
+    
+    const onClickUrl = (url) => {
+        return () => openInNewTab(url);
+    };
+    const openInNewTab = (url) => {
+        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+        if (newWindow) newWindow.opener = null;
+    };
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
